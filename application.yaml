@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: itsmetommy-argocd-app
+  namespace: argocd
+spec:
+  project: default
+  # Which Git repository to sync (source)
+  source:
+    # Git repository to sync from
+    repoURL: https://github.com/itsmetommy/argocd.git
+    targetRevision: HEAD
+    # Folder within git repository to sync from
+    # Best practice to use a separate folder per environment
+    path: dev
+  # Which K8s cluster
+  # This can be the same cluster where Argo CD is running
+  # or it can be an external K8s cluster 
+  destination:
+    # Kubernetes cluster API endpoint
+    server: https://kubernetes.default.svc
+    # Namespace to install application
+    namespace: itsmetommy
+  syncPolicy:
+    syncOptions:
+    # Create namespace if it doesn't exist
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
