@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd
+  namespace: itsmetommy
+spec:
+  selector:
+    matchLabels:
+      app: argocd
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: argocd
+    spec:
+      containers:
+      - name: argocd
+        image: itsmetommy/argocd:1.0
+        ports:
+        - containerPort: 80
