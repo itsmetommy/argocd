@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: argocd
-        image: itsmetommy/argocd:1.0
+        image: itsmetommy/argocd:2.0
         ports:
         - containerPort: 80
         readinessProbe:
