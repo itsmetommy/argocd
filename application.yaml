@@ -4,7 +4,7 @@ metadata:
   name: itsmetommy-argocd-application
   namespace: argocd
 spec:
-  project: default
+  project: itsmetommy
 
   source:
     repoURL: https://github.com/itsmetommy/argocd.git # Git repository to sync with
