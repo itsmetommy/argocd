@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: itsmetommy
+  namespace: argocd
+spec:
+  destinations:
+  - namespace: itsmetommy
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/itsmetommy/argocd.git
