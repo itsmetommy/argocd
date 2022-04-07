@@ -3,9 +3,10 @@ kind: Application
 metadata:
   name: itsmetommy-argocd-application
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: itsmetommy
-
   source:
     repoURL: https://github.com/itsmetommy/argocd.git # Git repository to sync with
     targetRevision: HEAD
@@ -13,11 +14,9 @@ spec:
   destination:
     server: https://kubernetes.default.svc # Kubernetes cluster API endpoint
     namespace: itsmetommy                  # Namespace to install application
-
   syncPolicy:
     syncOptions:
     - CreateNamespace=true # Create namespace if it doesn't exist
-
     automated:       # Polls git repository every 3 minutes
       selfHeal: true # Enable self-healing / sync (default is false)
       prune: true    # Delete resources when deleated in git
